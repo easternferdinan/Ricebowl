@@ -6,8 +6,7 @@ import Link from "next/link";
 const Card = ({ productID, imageUrl, productName, price, tags }) => {
   const handleAddToCart = (productID) => {
     const localCartItems = localStorage.getItem("cartItems");
-    const cartItems =
-      localCartItems !== "null" ? JSON.parse(localCartItems) : [];
+    const cartItems = localCartItems !== null ? JSON.parse(localCartItems) : [];
     const existingItem = cartItems
       ? cartItems.findIndex((obj) => obj.product === productID)
       : -1;
