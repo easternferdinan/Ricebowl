@@ -1,0 +1,8 @@
+.input-containers {
+  @apply flex flex-col justify-center items-center;
+}
+
+.input-containers > input,
+select {
+  @apply text-center p-3 border-[1px] rounded-lg border-black;
+}

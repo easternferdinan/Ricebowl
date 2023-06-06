@@ -1,0 +1,11 @@
+.register-input {
+  @apply p-2 bg-gray-200 border-2 rounded-md;
+}
+
+.register-input::placeholder {
+  @apply text-black;
+}
+
+.register-input:focus {
+  @apply border-0 outline-1 outline outline-[#7da32f];
+}

@@ -1,0 +1,15 @@
+.addAddressForm > label {
+  @apply text-center;
+}
+
+.addAddressForm > input {
+  @apply m-auto w-1/2;
+}
+
+.addAddressForm > textarea {
+  @apply text-center py-3;
+}
+
+.address-selection {
+  @apply m-auto w-1/2 text-center mb-5 py-3;
+}

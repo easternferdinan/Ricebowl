@@ -1,0 +1,3 @@
+.card-tags-style {
+  @apply bg-slate-300 text-black px-2 rounded-r-lg rounded-bl-lg;
+}
