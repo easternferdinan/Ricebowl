@@ -23,6 +23,33 @@ const ProductDetail = (props) => {
       );
   }, []);
 
+  const handleAddToCart = (productID) => {
+    const localCartItems = localStorage.getItem("cartItems");
+    const cartItems = localCartItems !== null ? JSON.parse(localCartItems) : [];
+    const existingItem = cartItems
+      ? cartItems.findIndex((obj) => obj.product === productID)
+      : -1;
+
+    if (existingItem !== -1) {
+      cartItems[existingItem].quantity += 1;
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    } else {
+      cartItems.push({ product: productID, quantity: 1 });
+      localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    }
+
+    (async () => {
+      fetch(process.env.NEXT_PUBLIC_API_URL + "cart", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(cartItems),
+      }).catch((error) => console.error(error));
+    })();
+  };
+
   return (
     <div className="flex flex-wrap justify-evenly bg-white p-5 gap-5 rounded-lg">
       <Image
@@ -62,7 +89,7 @@ const ProductDetail = (props) => {
           </div>
           <button
             className="flex gap-2 justify-center bg-[#CD6301] text-white p-3 self-end w-full rounded-xl hover:shadow-2xl"
-            onClick={() => handleAddToCart(productID)}
+            onClick={() => handleAddToCart(productId)}
           >
             <Image
               src="/assets/icons/add-to-cart-icon.svg"
